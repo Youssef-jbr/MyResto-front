@@ -1,7 +1,7 @@
 <template>
   <div class="login-wrap">
     <div class="login-html">
-      <input id="tab-1" type="radio" name="tab"  class="sign-in" checked /><label
+      <input id="tab-1" type="radio" name="tab" class="sign-in" checked /><label
         for="tab-1"
         class="tab"
         >Connexion</label
@@ -35,41 +35,46 @@
             />
           </div>
           <div class="group">
-            <input type="submit" class="button"  @click="submit()" value="Connexion" />
+            <input
+              type="submit"
+              class="button"
+              @click="submitLogin()"
+              value="Connexion"
+            />
           </div>
         </div>
         <div class="sign-up-htm">
           <div class="group">
-            <label for="user" class="label">Nom</label>
+            <label for="nom" class="label">Nom</label>
             <input
-              id="user"
+              id="nom"
               v-model="formRegister.nom"
               type="text"
               class="input"
             />
           </div>
           <div class="group">
-            <label for="user" class="label">Prénom</label>
+            <label for="prenom" class="label">Prénom</label>
             <input
-              id="user"
+              id="prenom"
               v-model="formRegister.prenom"
               type="text"
               class="input"
             />
           </div>
           <div class="group">
-            <label for="user" class="label">Adresse e-mail</label>
+            <label for="email" class="label">Adresse e-mail</label>
             <input
-              id="user"
+              id="email"
               v-model="formRegister.email"
               type="text"
               class="input"
             />
           </div>
           <div class="group">
-            <label for="pass" class="label">Mot de passe</label>
+            <label for="password" class="label">Mot de passe</label>
             <input
-              id="pass"
+              id="password"
               v-model="formRegister.password"
               type="password"
               class="input"
@@ -77,9 +82,9 @@
             />
           </div>
           <div class="group">
-            <label for="pass" class="label">Confirmez le mot de passe</label>
+            <label for="confirmPassword" class="label">Confirmez le mot de passe</label>
             <input
-              id="pass"
+              id="confirmPassword"
               v-model="formRegister.confirmPassword"
               type="password"
               class="input"
@@ -87,34 +92,34 @@
             />
           </div>
           <div class="group">
-            <label for="pass" class="label">Adresse</label>
+            <label for="adresse" class="label">Adresse</label>
             <input
-              id="pass"
+              id="adresse"
               v-model="formRegister.adresse"
               type="text"
               class="input"
             />
           </div>
           <div class="group">
-            <label for="pass" class="label">Code postal</label>
+            <label for="codePostal" class="label">Code postal</label>
             <input
-              id="pass"
+              id="codePostal"
               v-model="formRegister.codePostal"
               type="text"
               class="input"
             />
           </div>
           <div class="group">
-            <label for="pass" class="label">Ville</label>
+            <label for="ville" class="label">Ville</label>
             <input
-              id="pass"
+              id="ville"
               v-model="formRegister.ville"
               type="text"
               class="input"
             />
           </div>
           <div class="group">
-            <input type="submit" class="button" value="inscription" />
+            <input type="submit" class="button" @click="submitRegister()" value="inscription" />
           </div>
         </div>
       </div>
@@ -146,10 +151,6 @@ export default {
       error: false,
       msgError: "",
       validation: "",
-      requiredRules: [(v) => !!v || "Le champ est obligatoire"],
-      passwordConfirm: [
-        (v) => this.validate(v) || "Les mot de passes ne concorde pas !",
-      ],
     };
   },
   watch: {
@@ -173,8 +174,9 @@ export default {
   methods: {
     ...mapActions({
       login: "auth/login",
+      register: "auth/register"
     }),
-    submit() {
+    submitLogin() {
       this.login(this.formLogin).then((response) => {
         if (response) {
           if (response.data.code == 498) {
@@ -187,15 +189,25 @@ export default {
         }
       });
     },
+    submitRegister() {
+      this.register(this.formRegister).then((response) => {
+        if (response) {
+          if (response.data.code == 498) {
+            this.error = true;
+            this.msgError = response.data.message;
+            this.validation = "is-invalid";
+          }
+        } else {
+            this.$router.push("/carte").then(() => document.location.reload());
+        }
+      });
+    },
     validate() {
       if (this.formRegister.password === this.formRegister.confirmPassword) {
         return true;
       } else {
         return false;
       }
-    },
-    register() {
-      this.$router.push({ name: "Register" });
     },
   },
 };

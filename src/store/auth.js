@@ -44,7 +44,12 @@ export default {
         },
         async register({ dispatch }, credentials) {
             let response = await axios.post('auth/register', credentials)
-            return dispatch('attempt', response.data[0].token)
+             if (response.data.code == 498) {
+                 return response
+             } else {
+                  return dispatch('attempt', response.data[0].token)
+             }
+           
         },
         async attempt({ commit, state }, token) {
             if (token) {
