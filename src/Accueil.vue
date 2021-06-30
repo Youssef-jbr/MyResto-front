@@ -1,46 +1,70 @@
 <template>
-    <div class="app">
-        <div class="container">
-            <h1>My Resto</h1>  
-            <div class="superposition-simple">
-                <img class="image-originale" src="./assets/img/fond_restau.png" />
-                <div class="texte-original"><a href="#">Voir la carte.</a></div>
-            </div>
-            <br>
-            <p><a href="#">S'inscrire</a> - <a href="#">Se Connecter</a></p>
-
-            <p><a href="#">Voir la carte --></a></p>
-        </div>
-
-    
-
+  <div class="bg-banner">
+    <div class="container placement-banner">
+      <h1 class="display-1 titre-myresto">My Resto</h1>
+      <b-btn pill variant="danger" :to="{ name: 'Carte' }" class="text-button"
+        >Voir la carte</b-btn
+      ><br />
+      <b-btn
+        pill
+        variant="danger"
+        v-if="!this.user"
+        :to="{ name: 'Auth' }"
+        class="text-button mt-2"
+        >Authentification</b-btn
+      >
     </div>
+  </div>
 </template>
 
 <script>
+import store from "@/store/index.js";
+export default {
+  data() {
+    return {
+      user: [],
+      role: "",
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.role = store.getters["auth/role"];
+      this.user = store.getters["auth/user"];
+    }, 100);
+  },
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.superposition-simple {
- position: relative;
- width: 100%;
+.bg-banner {
+  background: url("./assets/img/fond_restau.jpg") no-repeat fixed;
+  width: 100%;
+  height: 1000px;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
 }
-.superposition-simple .image-originale {
- display: block;
- width: 100%;
- height: auto;
+.placement-banner {
+  top: 30%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  position: absolute;
+  text-align: center;
 }
-.superposition-simple .texte-original {
- color: #fff;
- font-size: 30px;
- line-height: 1.5em;
- text-shadow: 2px 2px 2px #000;
- text-align: bottom;
- position: absolute;
- top: 50%;
- left: 50%;
- transform: translate(-50%, -50%);
- width: 100%;
+.text-button {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.titre-myresto {
+  margin-left: 0;
+  margin-right: auto;
+  text-align: center;
+  font-family: Gomarice;
+  color: #ff4b3e;
+  text-shadow: rgb(0, 0, 0) 10px 0 15px;
 }
 </style>
