@@ -1,25 +1,26 @@
 /* eslint-disable */
 import Vue from "vue";
 import Router from "vue-router";
-import Index from "@/views/Index"
+import Login from "../Login"
+import Payement from "../Payement";
+
 
 Vue.use(Router)
 
 const router = new Router({
-    mode: "history",
-    routes: [{
-        path: "/",
-        name: "Index",
-        component: Index,
-        meta: {
-            requiresAuth: true
-        },
-    }, {
-        path: "/login",
-        name: "Login",
-        component: Login,
-        meta: {
-            loggedin: true
-        }
-    }, ]
+  mode: "history",
+  routes: [
+    {
+      path: "/login",
+      name: "Login",
+      component: Login,
+    },
+    {
+      path: "/payement",
+      name: "Payement",
+      component: Payement,
+    },
+  ],
 });
+
+export default router;
