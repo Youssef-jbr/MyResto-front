@@ -103,6 +103,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+input[type=radio] {
+   border: 0px; 
+   width: 100%; 
+   height: 1em; 
 
+   } 
+   input[type=text], input[type=number], select{
+   background: rgba(158, 154, 154, 0.445);
+
+   } 
 </style>
