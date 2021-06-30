@@ -23,7 +23,7 @@
  </div>
     <div>
    <h4 class="text-center mt-5">Credit card</h4>
-    <form method="post" action="#"  class="w-50 mx-auto mt-4 rounded shadow p-2 mb-5">
+    <form method="post" action="#"  class="w-50 mx-auto mt-4 rounded shadow p-4 mb-5">
         <div class="form-row  d-flex justify-content-center align-items-center ">
             <div class="col-7 ">
                 Prenom
@@ -42,7 +42,7 @@
             </div>
               <div class="col-4">
                 Code securite
-                <input name="cartenumber" type="text" class="form-control" placeholder="card number" requiredee>
+                <input name="cartenumber" type="text" class="form-control" placeholder="card securite" requiredee>
             </div>
             
         </div>

@@ -1,12 +1,7 @@
 <template>
   <div id="app">
-<<<<<<< HEAD
-        <HelloWorld msg="Accueil to MyResto"/>
-       
-=======
     <router-view />
     
->>>>>>> master
   </div>
 </template>
 
