@@ -7,6 +7,7 @@
       ><br />
       <b-btn
         pill
+        v-if="showAuth"
         variant="danger"
         :to="{ name: 'Auth' }"
         class="text-button mt-2"
@@ -23,13 +24,18 @@ export default {
     return {
       user: [],
       role: "",
+      showAuth: true
     };
   },
   mounted() {
     setTimeout(() => {
+      this.user = store.getters["auth/authenticated"];
+      if (this.user == true) {
+        this.showAuth = false;
+      } else if (this.user == false) {
+        this.showAuth = true;
+      }
       this.role = store.getters["auth/role"];
-      this.user = store.getters["auth/user"];
-      console.log(this.user);
     }, 100);
   },
 };

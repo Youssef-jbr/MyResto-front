@@ -14,6 +14,9 @@ Vue.use(Router)
 const router = new Router({
     mode: "history",
     routes: [{
+            path: '/',
+            redirect: '/accueil',
+        }, {
             path: "/auth",
             name: "Auth",
             component: Authentification,
@@ -46,6 +49,17 @@ const router = new Router({
             path: "/administration",
             name: "Administration",
             component: Administration,
+            beforeEnter: (to, from, next) => {
+                setTimeout(() => {
+                    if (store.getters['auth/role'] != "Gérant") {
+                        next(false);
+                    } else {
+                        next();
+                    }
+                }, 200)
+
+            }
+
         },
     ]
 });

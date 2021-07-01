@@ -6,12 +6,8 @@
         <b-col :cols="colCustom">
           <b-row>
             <b-col>
-              <select
-                v-model="filtre"
-                class="form-select"
-                aria-label="Default select example"
-              >
-                <option value="all" selected>Tous</option>
+              <select v-model="filtre" class="form-select">
+                <option selected value="all">Tous</option>
                 <option value="Menu">Menu</option>
                 <option value="Entree">Entrée</option>
                 <option value="Plat">Plat</option>
@@ -20,7 +16,6 @@
               </select>
             </b-col>
           </b-row>
-          <hr />
           <b-row class="mt-5 text-dark">
             <b-card header-tag="header" footer-tag="footer" v-show="showMenu">
               <template #header>
@@ -204,8 +199,7 @@
           </b-row>
         </b-col>
         <b-col :cols="colCustom">
-          <h1 class="mt-5">Ma commande</h1>
-          <b-card title="Résumé" header-tag="header" footer-tag="footer">
+          <b-card title="Ma commande" header-tag="header" footer-tag="footer">
             <div
               class="mb-5"
               v-for="command in commands"
@@ -251,7 +245,10 @@
             </div>
             <hr />
             <div class="d-grid gap-2 col-6 mx-auto">
-              <b-button variant="primary" @click="goToPaiement()"
+              <b-button
+                variant="primary"
+                v-if="prixTotal != 0"
+                @click="goToPaiement()"
                 >Passer au paiement</b-button
               >
             </div>
@@ -282,7 +279,7 @@ export default {
       boissons: [],
       commands: [],
       colCustom: "",
-      filtre: "",
+      filtre: "all",
       windowWidth: window.innerWidth,
     };
   },
@@ -346,24 +343,36 @@ export default {
       this.commands.splice(item, 1);
     },
     getProduits() {
-      axios.get("produit/index").then((response) => {
-        this.produits = response.data;
-        this.entres = this.produits.filter(
-          (item) => item.typeProduit == "Entree"
-        );
-        this.plats = this.produits.filter((item) => item.typeProduit == "Plat");
-        this.boissons = this.produits.filter(
-          (item) => item.typeProduit == "Boisson"
-        );
-        this.desserts = this.produits.filter(
-          (item) => item.typeProduit == "Dessert"
-        );
-      });
+      axios
+        .get("produit/index")
+        .then((response) => {
+          this.produits = response.data;
+          this.entres = this.produits.filter(
+            (item) => item.typeProduit == "Entree"
+          );
+          this.plats = this.produits.filter(
+            (item) => item.typeProduit == "Plat"
+          );
+          this.boissons = this.produits.filter(
+            (item) => item.typeProduit == "Boisson"
+          );
+          this.desserts = this.produits.filter(
+            (item) => item.typeProduit == "Dessert"
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     getMenus() {
-      axios.get("menu/index").then((response) => {
-        this.menus = response.data;
-      });
+      axios
+        .get("menu/index")
+        .then((response) => {
+          this.menus = response.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     goToPaiement() {
       this.$router.push({
