@@ -97,7 +97,7 @@
                 </b-card-text>
               </div>
             </b-card>
-            <b-card header-tag="header" footer-tag="footer"  v-show="showPlat">
+            <b-card header-tag="header" footer-tag="footer" v-show="showPlat">
               <template #header>
                 <h6 class="mb-0"><strong>PLATS</strong></h6>
               </template>
@@ -129,7 +129,11 @@
                 </b-card-text>
               </div>
             </b-card>
-            <b-card header-tag="header" footer-tag="footer"  v-show="showDessert">
+            <b-card
+              header-tag="header"
+              footer-tag="footer"
+              v-show="showDessert"
+            >
               <template #header>
                 <h6 class="mb-0"><strong>DESSERTS</strong></h6>
               </template>
@@ -161,7 +165,11 @@
                 </b-card-text>
               </div>
             </b-card>
-            <b-card header-tag="header" footer-tag="footer"  v-show="showBoisson">
+            <b-card
+              header-tag="header"
+              footer-tag="footer"
+              v-show="showBoisson"
+            >
               <template #header>
                 <h6 class="mb-0"><strong>BOISSONS</strong></h6>
               </template>
@@ -266,9 +274,9 @@ export default {
       desserts: [],
       prixTotal: 0,
       showMenu: true,
-      showDessert:true,
+      showDessert: true,
       showBoisson: true,
-      showPlat : true,
+      showPlat: true,
       showEntree: true,
       menus: [],
       boissons: [],
@@ -283,46 +291,46 @@ export default {
       console.log(val);
       switch (val) {
         case "Menu":
-          this.showMenu = true
-          this.showDessert = false
-          this.showBoisson = false
-          this.showPlat = false
-          this.showEntree = false
+          this.showMenu = true;
+          this.showDessert = false;
+          this.showBoisson = false;
+          this.showPlat = false;
+          this.showEntree = false;
           break;
         case "Entree":
-          this.showMenu = false
-          this.showDessert = false
-          this.showBoisson = false
-          this.showPlat = false
-          this.showEntree = true
+          this.showMenu = false;
+          this.showDessert = false;
+          this.showBoisson = false;
+          this.showPlat = false;
+          this.showEntree = true;
           break;
         case "Plat":
-          this.showMenu = false
-          this.showDessert = false
-          this.showBoisson = false
-          this.showPlat = true
-          this.showEntree = false
+          this.showMenu = false;
+          this.showDessert = false;
+          this.showBoisson = false;
+          this.showPlat = true;
+          this.showEntree = false;
           break;
         case "Dessert":
-          this.showMenu = true
-          this.showDessert = false
-          this.showBoisson = false
-          this.showPlat = false
-          this.showEntree = false
+          this.showMenu = true;
+          this.showDessert = false;
+          this.showBoisson = false;
+          this.showPlat = false;
+          this.showEntree = false;
           break;
         case "Boisson":
-           this.showMenu = false
-          this.showDessert = false
-          this.showBoisson = true
-          this.showPlat = false
-          this.showEntree = false
+          this.showMenu = false;
+          this.showDessert = false;
+          this.showBoisson = true;
+          this.showPlat = false;
+          this.showEntree = false;
           break;
         case "all":
-           this.showMenu = true
-          this.showDessert = true
-          this.showBoisson = true
-          this.showPlat = true
-          this.showEntree = true
+          this.showMenu = true;
+          this.showDessert = true;
+          this.showBoisson = true;
+          this.showPlat = true;
+          this.showEntree = true;
           break;
         default:
           break;
@@ -368,14 +376,14 @@ export default {
   mounted() {
     this.getProduits();
     this.getMenus();
-    window.onresize = () => {
-      this.windowWidth = window.innerWidth;
-      if (this.windowWidth > 1000) {
-        this.colCustom = 6;
-      } else {
-        this.colCustom = 12;
-      }
-    };
+   
+    this.windowWidth = window.innerWidth;
+    if (this.windowWidth > 1000) {
+      this.colCustom = 6;
+    } else {
+      this.colCustom = 12;
+    }
+    
     setTimeout(() => {
       this.role = store.getters["auth/role"];
       this.user = store.getters["auth/user"];

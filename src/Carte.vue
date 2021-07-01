@@ -206,14 +206,13 @@ export default {
   mounted() {
     this.getProduits();
     this.getMenus();
-    window.onresize = () => {
-      this.windowWidth = window.innerWidth;
-      if (this.windowWidth > 1000) {
-        this.colCustom = 6;
-      } else {
-        this.colCustom = 12;
-      }
-    };
+
+    this.windowWidth = window.innerWidth;
+    if (this.windowWidth > 1000) {
+      this.colCustom = 6;
+    } else {
+      this.colCustom = 12;
+    }
   },
 };
 </script>
