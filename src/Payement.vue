@@ -38,21 +38,22 @@
         ><span style="color: black">{{ total }} € euros</span></strong
       >
     </h1>
+    <hr>
     <h4 class="text-center mt-5 titles2">Carte de credit</h4>
-    <div
-      class="mr-5 d-flex flex-column justify-content-center align-items-center"
-    >
-      <img src="./assets/visa.png" alt=".." width="150" class="img-fluid" />
-      <label for="huey">Visa</label>
-      <input
-        type="radio"
-        id="huey"
-        name="drone"
-        value="huey"
-        style="font-size: 30px"
-        checked
-      />
-    </div>
+        <div
+          class="mr-5 d-flex flex-column justify-content-center align-items-center"
+        >
+          <img src="./assets/visa.png" alt=".." width="150" class="img-fluid" />
+          <label for="huey">Visa</label>
+          <input
+            type="radio"
+            id="huey"
+            name="drone"
+            value="huey"
+            style="font-size: 30px"
+            checked
+          />
+        </div>
     <form method="post" action="#" class="mt-4 rounded shadow p-4 forms m-5">
       <div class="form-row d-flex justify-content-center align-items-center">
         <div class="col-4 m-3">
@@ -154,7 +155,13 @@ export default {
       } else {
         this.colCustom = 12;
       }
+      
     };
+    if (this.windowWidth > 1000) {
+        this.colCustom = 6;
+      } else {
+        this.colCustom = 12;
+      }
   },
   computed : {
     nameState() {

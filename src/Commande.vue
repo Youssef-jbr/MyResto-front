@@ -20,7 +20,6 @@
               </select>
             </b-col>
           </b-row>
-          <hr />
           <b-row class="mt-5 text-dark">
             <b-card header-tag="header" footer-tag="footer" v-show="showMenu">
               <template #header>
@@ -204,8 +203,7 @@
           </b-row>
         </b-col>
         <b-col :cols="colCustom">
-          <h1 class="mt-5">Ma commande</h1>
-          <b-card title="Résumé" header-tag="header" footer-tag="footer">
+          <b-card title="Ma commande" header-tag="header" footer-tag="footer">
             <div
               class="mb-5"
               v-for="command in commands"
