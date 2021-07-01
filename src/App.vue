@@ -2,6 +2,7 @@
   <div id="app">
     <Navbar v-if="currentRouteName != 'Accueil'"></Navbar>
     <router-view />
+    
   </div>
 </template>
 

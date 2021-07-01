@@ -28,7 +28,6 @@ export default {
             return state.user
         },
         role(state) {
-            console.log(state.user)
             return state.user.role
         }
     },
