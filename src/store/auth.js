@@ -6,7 +6,8 @@ export default {
     namespaced: true,
     state: {
         token: null,
-        user: null
+        user: null,
+        role: null
     },
     mutations: {
         SET_TOKEN(state, token) {
@@ -14,6 +15,9 @@ export default {
         },
         SET_USER(state, data) {
             state.user = data
+        },
+        SET_ROLE(state, data) {
+            state.role = data
         }
     },
     getters: {
@@ -28,7 +32,7 @@ export default {
             return state.user
         },
         role(state) {
-            return state.user.role
+            return state.role
         }
     },
     actions: {
@@ -40,7 +44,6 @@ export default {
                 return dispatch('attempt', response.data[0].token)
 
             }
-
         },
         async register({ dispatch }, credentials) {
             let response = await axios.post('auth/register', credentials)
@@ -61,15 +64,18 @@ export default {
             try {
                 let response = await axios.get('auth/me')
                 commit('SET_USER', response.data)
+                commit('SET_ROLE', response.data.role)
             } catch (e) {
                 commit('SET_TOKEN', null)
                 commit('SET_USER', null)
+                commit('SET_ROLE', null)
             }
         },
         logout({ commit }) {
             return axios.post('auth/logout').then(() => {
                 commit('SET_TOKEN', null)
                 commit('SET_USER', null)
+                commit('SET_ROLE', null)
             })
         }
     }
