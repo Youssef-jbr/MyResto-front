@@ -6,7 +6,7 @@ import Payement from "../Payement";
 import Accueil from "../Accueil";
 import Carte from "../Carte"
 import Commande from "../Commande"
-import Administration from "../Administration"
+import store from "@/store/index.js";
 
 Vue.use(Router)
 
@@ -30,19 +30,29 @@ const router = new Router({
             path: "/payement",
             name: "Payement",
             component: Payement,
+            props: true,
 
         },
         {
             path: "/commande",
             name: "Commande",
             component: Commande,
-        },
-        {
-            path: "/administration",
-            name: "Administration",
-            component: Administration,
+            meta: {
+                requiresAuth: true
+            },
         }
     ]
 });
-
+router.beforeEach((to, from, next) => {
+    if (to.meta.requiresAuth) {
+        console.log(store.getters["auth/authenticated"])
+        if (store.getters["auth/authenticated"]) {
+            next();
+        } else {
+            next('/auth');
+        }
+    } else {
+        next();
+    }
+});
 export default router;
