@@ -83,7 +83,7 @@
               trim
             ></b-form-input>
             <p class="text-warning" v-show="showErrorCardNumber">
-              Les numéros de la carte doivent être rempli
+              Les numéros de la carte doivent être rempli avec des chiffres
             </p>
             Date d'expiration
             <b-form-input
@@ -233,7 +233,7 @@ export default {
           }
 
         case "numCarte":
-          if (this.cardnumber.length > 0) {
+          if (this.cardnumber.length > 0 && !isNaN(this.cardnumber)) {
             this.showErrorCardNumber = false;
             return true;
           } else {
@@ -251,7 +251,7 @@ export default {
           }
 
         case "CCV":
-          if (this.securitycode.length > 0) {
+          if (this.securitycode.length > 0 && !isNaN(this.securitycode)) {
             this.showErrorSecurityCode = false;
             return true;
           } else {
