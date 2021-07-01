@@ -1,6 +1,6 @@
 <template>
 <div>
-  <b-container class="bv-example-row">
+  <b-container class="bv-example-row pb-5">
     <b-row class="mt-5 mb-5 text-dark">
         <h1 class="titles">Commander</h1>
       <b-col>

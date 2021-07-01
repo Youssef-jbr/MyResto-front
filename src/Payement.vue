@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pb-5">
     <h1 class="titles">Paiement de votre Commande</h1>
     <div class="d-flex w-50 mx-auto justify-content-center align-items-center">
       <div
@@ -72,7 +72,7 @@
       >
         <div class="form-row d-flex justify-content-center align-items-center">
           <div class="col-1"></div>
-          <div class="col-4">
+          <div class="col-4 names">
             Nom
             <input
               name="nom"
@@ -82,7 +82,7 @@
             />
           </div>
           <div class="col-1"></div>
-          <div class="col-4">
+          <div class="col-4 names">
             Prénom
             <input
               name="nom"
@@ -96,7 +96,7 @@
         <hr>
         <div class="form-row d-flex justify-content-center align-items-center">
           <div class="col-1"></div>
-          <div class="col-4">
+          <div class="col-4 names">
             Numéro de la carte
             <input
               name="cartenumber"
@@ -106,7 +106,7 @@
             />
           </div>
           <div class="col-1"></div>
-          <div class="col-4">
+          <div class="col-4 names">
             Code de sécurite
             <input
               name="cartenumber"
@@ -120,7 +120,7 @@
         <hr>
         <div class="form-row d-flex justify-content-center align-items-center">
           <div class="col-1"></div>
-          <div class="col-4">
+          <div class="col-4 names">
             Date d'expiration
             <input
               name="annee"
@@ -130,7 +130,7 @@
             />
           </div>
           <div class="col-1"></div>
-          <div class="col-4">
+          <div class="col-4 names">
             Adresse
             <input
               name="adresse"
@@ -187,5 +187,8 @@ select {
 }
 .forms{
   background: rgba(40, 57, 101, 0.9);
+}
+.names {
+  color: #aaa;
 }
 </style>

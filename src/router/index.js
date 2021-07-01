@@ -6,6 +6,7 @@ import Payement from "../Payement";
 import Accueil from "../Accueil";
 import Carte from "../Carte"
 import Commande from "../Commande"
+import Administration from "../Administration"
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ const router = new Router({
             path: "/commande",
             name: "Commande",
             component: Commande,
+        },
+        {
+            path: "/administration",
+            name: "Administration",
+            component: Administration,
         }
     ]
 });
