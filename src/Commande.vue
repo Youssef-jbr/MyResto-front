@@ -13,7 +13,7 @@
               >
                 <option value="all" selected>Tous</option>
                 <option value="Menu">Menu</option>
-                <optio value="Entree">Entrée</optio>
+                <option value="Entree">Entrée</option>
                 <option value="Plat">Plat</option>
                 <option value="Dessert">Dessert</option>
                 <option value="Boisson">Boisson</option>
@@ -288,7 +288,6 @@ export default {
   },
   watch: {
     filtre(val) {
-      console.log(val);
       switch (val) {
         case "Menu":
           this.showMenu = true;
@@ -312,8 +311,8 @@ export default {
           this.showEntree = false;
           break;
         case "Dessert":
-          this.showMenu = true;
-          this.showDessert = false;
+          this.showMenu = false;
+          this.showDessert = true;
           this.showBoisson = false;
           this.showPlat = false;
           this.showEntree = false;
@@ -383,7 +382,8 @@ export default {
     } else {
       this.colCustom = 12;
     }
-    
+
+  
     setTimeout(() => {
       this.role = store.getters["auth/role"];
       this.user = store.getters["auth/user"];
