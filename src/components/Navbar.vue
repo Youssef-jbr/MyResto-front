@@ -20,10 +20,10 @@
           >
           <b-nav-item
             class="text-dark mt-3"
-            :to="{ name: 'Commander' }"
+            :to="{ name: 'Commande' }"
             exact
             exact-active-class="active"
-            >Commander</b-nav-item
+            >Commande</b-nav-item
           >
           <b-nav-item
             class="text-dark mt-3"

@@ -5,6 +5,7 @@ import Authentification from "../Authentification"
 import Payement from "../Payement";
 import Accueil from "../Accueil";
 import Carte from "../Carte"
+import Commande from "../Commande"
 
 Vue.use(Router)
 
@@ -28,7 +29,13 @@ const router = new Router({
             path: "/payement",
             name: "Payement",
             component: Payement,
+
         },
+        {
+            path: "/commande",
+            name: "Commande",
+            component: Commande,
+        }
     ]
 });
 
