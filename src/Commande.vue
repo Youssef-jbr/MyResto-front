@@ -6,27 +6,23 @@
         <b-col :cols="colCustom">
           <b-row>
             <b-col>
-              <select v-model="filtre" class="form-select" aria-label="Default select example">
-                <option value="" selected disabled>
-                  --Choisissez un filtre--
-                </option>
-                <option value="menu">Menu</option>
-                <optio value="entree">Entrée</optio>
-                <option value="plat">Plat</option>
-                <option value="dessert">Dessert</option>
-                <option value="boisson">Boisson</option>
+              <select
+                v-model="filtre"
+                class="form-select"
+                aria-label="Default select example"
+              >
+                <option value="all" selected>Tous</option>
+                <option value="Menu">Menu</option>
+                <optio value="Entree">Entrée</optio>
+                <option value="Plat">Plat</option>
+                <option value="Dessert">Dessert</option>
+                <option value="Boisson">Boisson</option>
               </select>
-            </b-col>
-            <b-col>
-              <b-form-input
-                v-model="text"
-                placeholder="Rechercher un produit ou menu"
-              ></b-form-input>
             </b-col>
           </b-row>
           <hr />
           <b-row class="mt-5 text-dark">
-            <b-card header-tag="header" footer-tag="footer">
+            <b-card header-tag="header" footer-tag="footer" v-show="showMenu">
               <template #header>
                 <h6 class="mb-0"><strong>LES MENUS</strong></h6>
               </template>
@@ -70,7 +66,7 @@
                 </b-card-text>
               </div>
             </b-card>
-            <b-card header-tag="header" footer-tag="footer">
+            <b-card header-tag="header" footer-tag="footer" v-show="showEntree">
               <template #header>
                 <h6 class="mb-0"><strong>ENTRÉES</strong></h6>
               </template>
@@ -101,7 +97,7 @@
                 </b-card-text>
               </div>
             </b-card>
-            <b-card header-tag="header" footer-tag="footer">
+            <b-card header-tag="header" footer-tag="footer"  v-show="showPlat">
               <template #header>
                 <h6 class="mb-0"><strong>PLATS</strong></h6>
               </template>
@@ -133,7 +129,7 @@
                 </b-card-text>
               </div>
             </b-card>
-            <b-card header-tag="header" footer-tag="footer">
+            <b-card header-tag="header" footer-tag="footer"  v-show="showDessert">
               <template #header>
                 <h6 class="mb-0"><strong>DESSERTS</strong></h6>
               </template>
@@ -165,7 +161,7 @@
                 </b-card-text>
               </div>
             </b-card>
-            <b-card header-tag="header" footer-tag="footer">
+            <b-card header-tag="header" footer-tag="footer"  v-show="showBoisson">
               <template #header>
                 <h6 class="mb-0"><strong>BOISSONS</strong></h6>
               </template>
@@ -235,14 +231,21 @@
                       class="img-fluid rounded m-2"
                       alt=""
                     ></b-img>
-                    <b-button variant="danger" class="m-2" @click="deleteItem(command)"><b-icon variant="light" icon="trash-fill"></b-icon></b-button>
+                    <b-button
+                      variant="danger"
+                      class="m-2"
+                      @click="deleteItem(command)"
+                      ><b-icon variant="light" icon="trash-fill"></b-icon
+                    ></b-button>
                   </b-col>
                 </b-row>
               </b-card-text>
             </div>
             <hr />
             <div class="d-grid gap-2 col-6 mx-auto">
-              <b-button variant="primary" @click="goToPaiement()">Passer au paiement</b-button>
+              <b-button variant="primary" @click="goToPaiement()"
+                >Passer au paiement</b-button
+              >
             </div>
           </b-card>
         </b-col>
@@ -262,21 +265,78 @@ export default {
       plats: [],
       desserts: [],
       prixTotal: 0,
+      showMenu: true,
+      showDessert:true,
+      showBoisson: true,
+      showPlat : true,
+      showEntree: true,
       menus: [],
       boissons: [],
       commands: [],
       colCustom: "",
+      filtre: "",
       windowWidth: window.innerWidth,
     };
   },
+  watch: {
+    filtre(val) {
+      console.log(val);
+      switch (val) {
+        case "Menu":
+          this.showMenu = true
+          this.showDessert = false
+          this.showBoisson = false
+          this.showPlat = false
+          this.showEntree = false
+          break;
+        case "Entree":
+          this.showMenu = false
+          this.showDessert = false
+          this.showBoisson = false
+          this.showPlat = false
+          this.showEntree = true
+          break;
+        case "Plat":
+          this.showMenu = false
+          this.showDessert = false
+          this.showBoisson = false
+          this.showPlat = true
+          this.showEntree = false
+          break;
+        case "Dessert":
+          this.showMenu = true
+          this.showDessert = false
+          this.showBoisson = false
+          this.showPlat = false
+          this.showEntree = false
+          break;
+        case "Boisson":
+           this.showMenu = false
+          this.showDessert = false
+          this.showBoisson = true
+          this.showPlat = false
+          this.showEntree = false
+          break;
+        case "all":
+           this.showMenu = true
+          this.showDessert = true
+          this.showBoisson = true
+          this.showPlat = true
+          this.showEntree = true
+          break;
+        default:
+          break;
+      }
+    },
+  },
   methods: {
     selectItem(item) {
-      this.prixTotal = this.prixTotal + parseFloat(item.prix)
+      this.prixTotal = this.prixTotal + parseFloat(item.prix);
       this.commands.push(item);
     },
     deleteItem(item) {
-      this.prixTotal = this.prixTotal - item.prix
-      this.commands.splice(item, 1)
+      this.prixTotal = this.prixTotal - item.prix;
+      this.commands.splice(item, 1);
     },
     getProduits() {
       axios.get("produit/index").then((response) => {
@@ -299,7 +359,10 @@ export default {
       });
     },
     goToPaiement() {
-      this.$router.push({name: 'Payement', params: {'commands': this.commands, 'total': this.prixTotal}})
+      this.$router.push({
+        name: "Payement",
+        params: { commands: this.commands, total: this.prixTotal },
+      });
     },
   },
   mounted() {
@@ -313,7 +376,7 @@ export default {
         this.colCustom = 12;
       }
     };
-     setTimeout(() => {
+    setTimeout(() => {
       this.role = store.getters["auth/role"];
       this.user = store.getters["auth/user"];
     }, 100);
