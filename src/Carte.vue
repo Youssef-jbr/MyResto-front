@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row">
+  <b-container class="bv-example-row pb-5">
     <b-row class="mt-5 text-dark">
       <b-col :cols="colCustom">
         <h1 class="titles">Carte du restaurant</h1>
@@ -112,7 +112,7 @@
         </b-card>
       </b-col>
       <b-col :cols="colCustom">
-        <h1 class="titles">Menus / Compositions</h1>
+        <h1 class="titles">Menus et Compositions</h1>
 
         <div v-for="menu in menus" v-bind:key="menu.id">
           <b-card header-tag="header" footer-tag="footer">
@@ -208,6 +208,8 @@ export default {
 
 <style scoped>
 .titles {
+  margin-top:20px;
+  margin-bottom: 30px;
   font-size: 50px;
   font-family: Gomarice;
   color: black;
