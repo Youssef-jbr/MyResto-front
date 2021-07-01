@@ -1,5 +1,5 @@
 <template>
-<div>
+  <div>
     <b-container class="bv-example-row pb-5">
       <b-row class="mt-5 mb-5 text-dark">
         <h1 class="titles">Commander</h1>
@@ -375,15 +375,22 @@ export default {
   mounted() {
     this.getProduits();
     this.getMenus();
-   
+
     this.windowWidth = window.innerWidth;
     if (this.windowWidth > 1000) {
       this.colCustom = 6;
     } else {
       this.colCustom = 12;
     }
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+      if (this.windowWidth > 1000) {
+        this.colCustom = 6;
+      } else {
+        this.colCustom = 12;
+      }
+    };
 
-  
     setTimeout(() => {
       this.role = store.getters["auth/role"];
       this.user = store.getters["auth/user"];
