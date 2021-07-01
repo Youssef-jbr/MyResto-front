@@ -2,7 +2,7 @@
   <b-container class="bv-example-row">
     <b-row class="mt-5 text-dark">
       <b-col :cols="colCustom">
-        <h1>Carte du restaurant</h1>
+        <h1 class="titles">Carte du restaurant</h1>
         <b-card header-tag="header" footer-tag="footer">
           <template #header>
             <h6 class="mb-0"><strong>ENTRÉES</strong></h6>
@@ -112,7 +112,7 @@
         </b-card>
       </b-col>
       <b-col :cols="colCustom">
-        <h1>Menus / Compositions</h1>
+        <h1 class="titles">Menus / Compositions</h1>
 
         <div v-for="menu in menus" v-bind:key="menu.id">
           <b-card header-tag="header" footer-tag="footer">
@@ -207,4 +207,9 @@ export default {
 </script>
 
 <style scoped>
+.titles {
+  font-size: 50px;
+  font-family: Gomarice;
+  color: black;
+}
 </style>
