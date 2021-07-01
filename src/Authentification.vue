@@ -210,8 +210,9 @@ export default {
             this.validation = "is-invalid";
           }
         } else {
-          this.$router.push("/carte").then(() => document.location.reload());
-        }
+          this.$swal('Vous êtes bien inscrit !').then(() => 
+          this.$router.push("/carte")
+          )} 
       });
     },
     validate() {

@@ -57,34 +57,62 @@
       <div class="form-row d-flex justify-content-center align-items-center">
         <div class="col-4 m-3">
           Nom
-          <input name="nom" type="text" class="form-control" required />
+          <b-form-input
+          id="input-live"
+          v-model="name"
+          :state="nameState"
+          aria-describedby="input-live-feedback"
+          trim
+          ></b-form-input>
         </div>
+        <b-form-invalid-feedback id="input-live-feedback">
+        Le champ ne peut pas être vide !
+        </b-form-invalid-feedback>
         <div class="col-4 m-3">
           Prénom
-          <input name="nom" type="text" class="form-control" required />
+          <b-form-input
+          id="input-live"
+          v-model="prenom"
+          :state="prenomState"
+          aria-describedby="input-live-help input-live-feedback"
+          trim
+          ></b-form-input>
         </div>
       </div>
       <hr />
       <div class="form-row d-flex justify-content-center align-items-center">
         <div class="col-4 m-3">
           Numéro de la carte
-          <input
-            name="cartenumber"
-            type="text"
-            class="form-control"
-            requiredee
-          />
+          <b-form-input
+          id="input-live"
+          v-model="cardnumber"
+          :state="cardnumberSate"
+          aria-describedby="input-live-help input-live-feedback"
+          trim
+          ></b-form-input>
         </div>
         <div class="col-4 m-3">
           Date d'expiration
-          <input name="annee" type="text" class="form-control" required />
+          <b-form-input
+          id="input-live"
+          v-model="expirationdate"
+          :state="expirationdateState"
+          aria-describedby="input-live-help input-live-feedback"
+          trim
+          ></b-form-input>
         </div>
       </div>
       <hr />
       <div class="form-row d-flex justify-content-center align-items-center">
         <div class="col-4 m-3">
           Code de sécurite
-          <input name="cartenumber" type="text" class="form-control" required />
+          <b-form-input
+          id="input-live"
+          v-model="securitycode"
+          :state="securitycodeState"
+          aria-describedby="input-live-help input-live-feedback"
+          trim
+          ></b-form-input>
         </div>
       </div>
       <hr />
@@ -110,6 +138,12 @@ export default {
     return {
       colCustom: "",
       windowWidth: window.innerWidth,
+      name: '',
+      prenom: '',
+      cardnumber: '',
+      expirationdate: '',
+      securitycode: ''
+      
     };
   },
   mounted() {
@@ -122,13 +156,32 @@ export default {
       }
     };
   },
+  computed : {
+    nameState() {
+      return this.name.length > 0 ? true : false
+    },
+    prenomState() {
+      return this.prenom.length > 0 ? true : false
+    },
+    cardnumberSate() {
+      return this.cardnumber.length > 0 ? true : false 
+    },
+    expirationdateState() {
+      return this.expirationdate.length > 0 ? true : false
+    },
+    securitycodeState(){
+      return this.securitycode.length > 0 ? true : false
+    }
+  },
   methods: {
     payer() {
       var arraySend = []
       arraySend['commande'] = this.commands
       axios.post("/commande/store", this.commands).then((response) => {
           console.log(response)
-          this.$router.push('/carte')
+          this.$swal(response.data.message).then(() => 
+          this.$router.push("/carte")
+          )
       });
     },
   },
@@ -161,5 +214,8 @@ select {
 }
 .forms {
   background: rgba(40, 57, 101, 0.9);
+}
+.names {
+  color: #aaa;
 }
 </style>
