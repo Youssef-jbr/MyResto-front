@@ -14,6 +14,9 @@ Vue.use(Router)
 const router = new Router({
     mode: "history",
     routes: [{
+            path: '/',
+            redirect: '/accueil',
+        }, {
             path: "/auth",
             name: "Auth",
             component: Authentification,
