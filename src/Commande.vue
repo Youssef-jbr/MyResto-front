@@ -2,6 +2,7 @@
 <div>
   <b-container class="bv-example-row">
     <b-row class="mt-5 mb-5 text-dark">
+        <h1 class="titles">Commander</h1>
       <b-col>
         <b-row>
             <b-col>
@@ -114,8 +115,16 @@
               style="background-color: #972d07"
               value="Commander"
             />
-            <b-modal id="modal-1" title="BootstrapVue">
-            <p class="my-4">Hello from modal!</p>
+
+            <b-modal 
+              id="modal-1" 
+              title="Récapitulatif de la commande n°"
+              ok-title="Payer"
+            >
+                <p class="my-4">Nom :</p>
+                <p class="my-4">Prénom :</p>
+                <p class="my-4">Adresse de livraison :</p>
+                <p class="my-4">Total :</p>
             </b-modal>
           </div>
           </b-card>
@@ -132,5 +141,9 @@ export default {
 </script>
 
 <style>
-
+.titles {
+  font-size: 50px;
+  font-family: Gomarice;
+  color: black;
+}
 </style>

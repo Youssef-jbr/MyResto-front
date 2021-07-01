@@ -45,7 +45,7 @@
         </b-card>
       </b-col>
       <b-col>
-        <h1 class="titles">Menus &amp; Compositions</h1>
+        <h1 class="titles">Menus et Compositions</h1>
         <b-card header-tag="header" footer-tag="footer">
           <template #header>
             <h6 class="mb-0"><strong>MENU 1</strong></h6>
@@ -100,6 +100,5 @@ export default {};
   font-size: 50px;
   font-family: Gomarice;
   color: black;
-  text-shadow: rgb(223, 51, 51) 10px 0 15px;
 }
 </style>

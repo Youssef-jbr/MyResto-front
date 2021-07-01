@@ -27,6 +27,13 @@
           >
           <b-nav-item
             class="text-dark mt-3"
+            :to="{ name: 'Payement' }"
+            exact
+            exact-active-class="active"
+            >Paiement</b-nav-item
+          >
+          <b-nav-item
+            class="text-dark mt-3"
             :to="{ name: 'TableauDeBord' }"
             exact
             v-if="role == 'Gérant'"

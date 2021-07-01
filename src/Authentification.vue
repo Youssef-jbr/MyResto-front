@@ -39,7 +39,7 @@
             <input
               type="submit"
               class="btn text-white"
-              style="background-color: #972d07"
+              style="background-color: #972d07; border-radius: 25px"
               @click="submitLogin()"
               value="Connexion"
             />
@@ -126,7 +126,7 @@
             <input
               type="submit"
               class="btn text-white"
-              style="background-color: #972d07"
+              style="background-color: #972d07; border-radius: 25px"
               @click="submitRegister()"
               value="Inscription"
             />
