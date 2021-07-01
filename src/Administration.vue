@@ -1,7 +1,7 @@
 <template>
   <b-container class="bv-example-row pb-5">
     <b-row class="mt-5 mb-5 text-dark">
-      <h1 class="titles">Tableau de bord</h1>
+      <h1 class="titles">Commandes en cours</h1>
       <b-col>
         <b-card
           header-tag="header"
@@ -22,10 +22,10 @@
               >
               <b-list-group-item
                 >Type de livraison :
-                {{ command.typeLivraison }}</b-list-group-item
+                <strong>{{ command.typeLivraison }}</strong></b-list-group-item
               >
               <b-list-group-item>
-                Produits commandés :
+                <u>Produits commandés :</u>
                 <b-list-group
                   flush
                   v-for="menu in command.menus"
@@ -34,23 +34,21 @@
                   <b-list-group-item
                     >Nom du produit : <strong>{{ menu.nom }}</strong> <br />
                     Prix :
-                    <strong>{{ menu.prix }}</strong></b-list-group-item
+                    <strong>{{ menu.prix }} € euros</strong></b-list-group-item
                   >
-                  <b-list-group-item></b-list-group-item>
                 </b-list-group>
-                <b-list-group
+                <div
                   flush
                   v-for="produit in command.produits"
                   v-bind:key="produit.id"
                 >
-                  <b-list-group-item
+                  <div
                     >Nom du produit :
                     <strong>{{ produit.designation }}</strong> <br />
                     Prix :
-                    <strong>{{ produit.prix }}</strong></b-list-group-item
+                    <strong>{{ produit.prix }} € euros</strong></div
                   >
-                  <b-list-group-item></b-list-group-item>
-                </b-list-group>
+                </div>
               </b-list-group-item>
             </b-list-group>
           </b-card-text>

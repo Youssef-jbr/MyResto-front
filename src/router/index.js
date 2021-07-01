@@ -49,6 +49,17 @@ const router = new Router({
             path: "/administration",
             name: "Administration",
             component: Administration,
+            beforeEnter: (to, from, next) => {
+                setTimeout(() => {
+                    if (store.getters['auth/role'] != "Gérant") {
+                        next(false);
+                    } else {
+                        next();
+                    }
+                }, 200)
+
+            }
+
         },
     ]
 });

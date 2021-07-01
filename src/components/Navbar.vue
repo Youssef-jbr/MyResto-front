@@ -108,7 +108,7 @@ export default {
       }
       this.role = store.getters["auth/role"];
       console.log(this.role)
-    }, 100);
+    }, 300);
   },
   methods: {
     ...mapActions({
@@ -118,7 +118,7 @@ export default {
     signout() {
       if (confirm("Étes vous sur de fermer votre session ?")) {
         this.logout();
-        this.$router.push("/auth");
+        this.$router.push("/auth").then(() => setTimeout(() => { document.location.reload() }, 500));
       }
     },
   },

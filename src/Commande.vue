@@ -9,9 +9,8 @@
               <select
                 v-model="filtre"
                 class="form-select"
-                aria-label="Default select example"
               >
-                <option value="all" selected>Tous</option>
+                <option selected value="all" >Tous</option>
                 <option value="Menu">Menu</option>
                 <option value="Entree">Entrée</option>
                 <option value="Plat">Plat</option>
@@ -280,7 +279,7 @@ export default {
       boissons: [],
       commands: [],
       colCustom: "",
-      filtre: "",
+      filtre: "all",
       windowWidth: window.innerWidth,
     };
   },
