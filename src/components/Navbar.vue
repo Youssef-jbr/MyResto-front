@@ -35,22 +35,38 @@
             <li class="nav-item p-4">
               <b-button variant="light" :to="{ name: 'Carte' }"
                 >A LA CARTE</b-button
-              > <b-icon icon="receipt" scale="2"  variant="danger"></b-icon>
+              >
+              <b-icon icon="receipt" scale="2" variant="danger"></b-icon>
             </li>
             <li class="nav-item p-4">
               <b-button variant="light" :to="{ name: 'Commande' }"
                 >JE COMMANDE !</b-button
-              > <b-icon icon="cart" scale="2"  variant="danger"></b-icon>
-            </li>
-            <li class="nav-item p-4" v-if="showAuth == false">
-              <b-button variant="light" :to="{ name: 'Auth' }"
-                >AUTHENTIFICATION</b-button
-              > <b-icon icon="person-check-fill" scale="2"  variant="danger"></b-icon>
+              >
+              <b-icon icon="cart" scale="2" variant="danger"></b-icon>
             </li>
             <li class="nav-item p-4" v-if="showAuth == true">
-              <b-button variant="light" @click="signout()"
-                >DECONNEXION</b-button 
-              ><b-icon icon="arrow-return-right" scale="2"  variant="danger"></b-icon>
+              <b-button variant="light" :to="{ name: 'Auth' }"
+                >AUTHENTIFICATION</b-button
+              >
+              <b-icon
+                icon="person-check-fill"
+                scale="2"
+                variant="danger"
+              ></b-icon>
+            </li>
+            <li class="nav-item p-4" v-if="showAuth == false">
+              <b-button variant="light" @click="signout()">DECONNEXION</b-button
+              ><b-icon
+                icon="arrow-return-right"
+                scale="2"
+                variant="danger"
+              ></b-icon>
+            </li>
+            <li class="nav-item p-4" v-if="role == 'Gérant'">
+              <b-button variant="light" :to="{ name: 'Administration' }"
+                >ADMINISTRATION</b-button
+              >
+              <b-icon icon="tools" scale="2" variant="danger"></b-icon>
             </li>
           </ul>
           <!-- Left links -->
@@ -60,9 +76,7 @@
         <!-- Right elements -->
         <div class="d-flex align-items-center">
           <!-- Icon -->
-          <a class="text-reset me-3" href="#">
-            
-          </a>
+          <a class="text-reset me-3" href="#"> </a>
         </div>
         <!-- Right elements -->
       </div>
@@ -85,14 +99,14 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      this.role = store.getters["auth/role"];
-      this.user = store.getters["auth/user"];
-      console.log(this.user);
-      if (this.user) {
+      this.user = store.getters["auth/authenticated"];
+      if (this.user == true) {
         this.showAuth = false;
-      } else {
+      } else if (this.user == false) {
         this.showAuth = true;
       }
+      this.role = store.getters["auth/role"];
+      console.log(this.role)
     }, 100);
   },
   methods: {
