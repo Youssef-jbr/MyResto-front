@@ -34,7 +34,6 @@
             >Administration</b-nav-item
           >
           <b-nav-item
-            v-if="this.user"
             class="text-dark mt-3"
             @click="signout()"
             exact
@@ -45,7 +44,6 @@
           <b-nav-item
             class="text-dark mt-3"
             :to="{ name: 'Auth' }"
-            v-else
             exact
             exact-active-class="active"
             >Authentification</b-nav-item
@@ -71,7 +69,6 @@ export default {
     setTimeout(() => {
       this.role = store.getters["auth/role"];
       this.user = store.getters["auth/user"];
-      console.log(this.role)
     }, 100);
   },
   methods: {

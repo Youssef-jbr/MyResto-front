@@ -20,7 +20,7 @@
               :class="validation"
               v-model="formLogin.email"
               type="text"
-              class="input"
+              class="form-control input-colored"
             />
           </div>
           <div class="group">
@@ -30,14 +30,16 @@
               :class="validation"
               v-model="formLogin.password"
               type="password"
-              class="input"
+              class="form-control input-colored"
               data-type="password"
             />
           </div>
+          <div class="group text-danger" v-if="validation">Vos identifiants ou mot de passe sont incorrect !</div>
           <div class="group">
             <input
               type="submit"
-              class="button"
+              class="btn text-white"
+              style="background-color: #972d07"
               @click="submitLogin()"
               value="Connexion"
             />
@@ -50,7 +52,7 @@
               id="nom"
               v-model="formRegister.nom"
               type="text"
-              class="input"
+              class="form-control input-colored"
             />
           </div>
           <div class="group">
@@ -59,7 +61,7 @@
               id="prenom"
               v-model="formRegister.prenom"
               type="text"
-              class="input"
+              class="form-control input-colored"
             />
           </div>
           <div class="group">
@@ -68,7 +70,7 @@
               id="email"
               v-model="formRegister.email"
               type="text"
-              class="input"
+              class="form-control input-colored"
             />
           </div>
           <div class="group">
@@ -77,17 +79,19 @@
               id="password"
               v-model="formRegister.password"
               type="password"
-              class="input"
+              class="form-control input-colored"
               data-type="password"
             />
           </div>
           <div class="group">
-            <label for="confirmPassword" class="label">Confirmez le mot de passe</label>
+            <label for="confirmPassword" class="label"
+              >Confirmez le mot de passe</label
+            >
             <input
               id="confirmPassword"
               v-model="formRegister.confirmPassword"
               type="password"
-              class="input"
+              class="form-control input-colored"
               data-type="password"
             />
           </div>
@@ -97,7 +101,7 @@
               id="adresse"
               v-model="formRegister.adresse"
               type="text"
-              class="input"
+              class="form-control input-colored"
             />
           </div>
           <div class="group">
@@ -106,7 +110,7 @@
               id="codePostal"
               v-model="formRegister.codePostal"
               type="text"
-              class="input"
+              class="form-control input-colored"
             />
           </div>
           <div class="group">
@@ -115,11 +119,17 @@
               id="ville"
               v-model="formRegister.ville"
               type="text"
-              class="input"
+              class="form-control input-colored"
             />
           </div>
-          <div class="group">
-            <input type="submit" class="button" @click="submitRegister()" value="inscription" />
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <input
+              type="submit"
+              class="btn text-white"
+              style="background-color: #972d07"
+              @click="submitRegister()"
+              value="Inscription"
+            />
           </div>
         </div>
       </div>
@@ -174,7 +184,7 @@ export default {
   methods: {
     ...mapActions({
       login: "auth/login",
-      register: "auth/register"
+      register: "auth/register",
     }),
     submitLogin() {
       this.login(this.formLogin).then((response) => {
@@ -198,7 +208,7 @@ export default {
             this.validation = "is-invalid";
           }
         } else {
-            this.$router.push("/carte").then(() => document.location.reload());
+          this.$router.push("/carte").then(() => document.location.reload());
         }
       });
     },
@@ -214,17 +224,6 @@ export default {
 </script>
 
 <style>
-body {
-  margin: 0;
-  color: #6a6f8c;
-  background: #972d07;
-  font: 600 16px/18px "Open Sans", sans-serif;
-}
-*,
-:after,
-:before {
-  box-sizing: border-box;
-}
 .clearfix:after,
 .clearfix:before {
   content: "";
@@ -234,11 +233,6 @@ body {
   clear: both;
   display: block;
 }
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 .login-wrap {
   width: 100%;
   margin: auto;
@@ -305,12 +299,12 @@ a {
   color: #fff;
   display: block;
 }
-.login-form .group .input,
-.login-form .group .button {
-  border: none;
-  padding: 15px 20px;
-  border-radius: 25px;
-  background: rgba(255, 255, 255, 0.1);
+.input-colored {
+  color: white !important;
+  border: none !important;
+  padding: 10px 15px !important;
+  border-radius: 25px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
 }
 .login-form .group input[data-type="password"] {
   -webkit-text-security: circle;
@@ -370,6 +364,9 @@ a {
   + .login-form
   .sign-in-htm {
   transform: rotate(0);
+}
+.sign-in:hover .sign-up:hover {
+  cursor: pointer;
 }
 .login-html .sign-up:checked + .tab + .login-form .sign-up-htm {
   transform: rotate(0);

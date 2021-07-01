@@ -1,14 +1,13 @@
 <template>
   <div class="bg-banner">
     <div class="container placement-banner">
-      <h1 class="display-1 titre-myresto">My Resto</h1>
+      <h1 class="titre-myresto">My Resto</h1>
       <b-btn pill variant="danger" :to="{ name: 'Carte' }" class="text-button"
         >Voir la carte</b-btn
       ><br />
       <b-btn
         pill
         variant="danger"
-        v-if="!this.user"
         :to="{ name: 'Auth' }"
         class="text-button mt-2"
         >Authentification</b-btn
@@ -30,6 +29,7 @@ export default {
     setTimeout(() => {
       this.role = store.getters["auth/role"];
       this.user = store.getters["auth/user"];
+      console.log(this.user);
     }, 100);
   },
 };
@@ -58,13 +58,30 @@ export default {
 }
 .text-button {
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
 }
 .titre-myresto {
   margin-left: 0;
   margin-right: auto;
   text-align: center;
+  font-size: 200px;
   font-family: Gomarice;
   color: #ff4b3e;
   text-shadow: rgb(0, 0, 0) 10px 0 15px;
+}
+@media screen and (max-width: 1100px) {
+  .titre-myresto {
+    margin-left: 0;
+    margin-right: auto;
+    text-align: center;
+    font-size: 80px;
+    font-family: Gomarice;
+    color: #ff4b3e;
+    text-shadow: rgb(0, 0, 0) 10px 0 15px;
+  }
+  .text-button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+  }
 }
 </style>
