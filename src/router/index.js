@@ -7,6 +7,7 @@ import Accueil from "../Accueil";
 import Carte from "../Carte"
 import Commande from "../Commande"
 import store from "@/store/index.js";
+import Administration from "../Administration"
 
 Vue.use(Router)
 
@@ -40,7 +41,12 @@ const router = new Router({
             meta: {
                 requiresAuth: true
             },
-        }
+        },
+        {
+            path: "/administration",
+            name: "Administration",
+            component: Administration,
+        },
     ]
 });
 router.beforeEach((to, from, next) => {
