@@ -73,6 +73,8 @@ export default {
     getCommands() {
       axios.get("/commande/index").then((response) => {
         this.commands = response.data;
+      }).catch((err) => {
+        console.log(err)
       });
     },
   },

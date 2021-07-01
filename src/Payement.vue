@@ -208,6 +208,8 @@ export default {
         this.$swal(response.data.message).then(() =>
           this.$router.push("/carte")
         );
+      }).catch((err) => {
+        console.log(err)
       });
     },
     verifVariable(variable) {

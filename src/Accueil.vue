@@ -36,7 +36,6 @@ export default {
         this.showAuth = true;
       }
       this.role = store.getters["auth/role"];
-      console.log(this.role);
     }, 100);
   },
 };

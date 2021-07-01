@@ -355,11 +355,15 @@ export default {
         this.desserts = this.produits.filter(
           (item) => item.typeProduit == "Dessert"
         );
+      }).catch((err) => {
+        console.log(err)
       });
     },
     getMenus() {
       axios.get("menu/index").then((response) => {
         this.menus = response.data;
+      }).catch((err) => {
+        console.log(err)
       });
     },
     goToPaiement() {
