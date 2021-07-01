@@ -5,7 +5,7 @@
       <b-col>
         <b-card header-tag="header" footer-tag="footer">
           <template #header>
-            <h6 class="mb-0"><strong>Récapitulatif de la commande n°</strong></h6>
+            <h6 class="mb-0"><strong>Récapitulatif de la commande n°&nbsp;<b-icon icon="trash-fill" aria-label="Help"></b-icon></strong></h6>
           </template>
           <b-card-text>salut</b-card-text>
           <b-card-text>salut</b-card-text>
@@ -15,7 +15,7 @@
         </b-card>
         <b-card header-tag="header" footer-tag="footer">
           <template #header>
-            <h6 class="mb-0"><strong>Récapitulatif de la commande n°</strong></h6>
+            <h6 class="mb-0"><strong>Récapitulatif de la commande n°&nbsp;<b-icon icon="trash-fill" aria-label="Help"></b-icon></strong></h6>
           </template>
           <b-card-text>salut</b-card-text>
           <b-card-text>salut</b-card-text>
@@ -25,7 +25,7 @@
         </b-card>
         <b-card header-tag="header" footer-tag="footer">
           <template #header>
-            <h6 class="mb-0"><strong>Récapitulatif de la commande n°</strong></h6>
+            <h6 class="mb-0"><strong>Récapitulatif de la commande n°&nbsp;<b-icon icon="trash-fill" aria-label="Help"></b-icon></strong></h6>
           </template>
           <b-card-text>salut</b-card-text>
           <b-card-text>salut</b-card-text>
@@ -35,7 +35,7 @@
         </b-card>
         <b-card header-tag="header" footer-tag="footer">
           <template #header>
-            <h6 class="mb-0"><strong>Récapitulatif de la commande n°</strong></h6>
+            <h6 class="mb-0"><strong>Récapitulatif de la commande n°&nbsp;<b-icon icon="trash-fill" aria-label="Help"></b-icon></strong></h6>
           </template>
           <b-card-text>salut</b-card-text>
           <b-card-text>salut</b-card-text>
