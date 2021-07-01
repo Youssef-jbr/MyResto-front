@@ -213,6 +213,14 @@ export default {
     } else {
       this.colCustom = 12;
     }
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+      if (this.windowWidth > 1000) {
+        this.colCustom = 6;
+      } else {
+        this.colCustom = 12;
+      }
+    };
   },
 };
 </script>

@@ -54,6 +54,12 @@
                 variant="danger"
               ></b-icon>
             </li>
+             <li class="nav-item p-4" v-if="role == 'Gérant'">
+              <b-button variant="light" :to="{ name: 'Administration' }"
+                >ADMINISTRATION</b-button
+              >
+              <b-icon icon="tools" scale="2" variant="danger"></b-icon>
+            </li>
             <li class="nav-item p-4" v-if="showAuth == false">
               <b-button variant="light" @click="signout()">DECONNEXION</b-button
               ><b-icon
@@ -62,12 +68,7 @@
                 variant="danger"
               ></b-icon>
             </li>
-            <li class="nav-item p-4" v-if="role == 'Gérant'">
-              <b-button variant="light" :to="{ name: 'Administration' }"
-                >ADMINISTRATION</b-button
-              >
-              <b-icon icon="tools" scale="2" variant="danger"></b-icon>
-            </li>
+           
           </ul>
           <!-- Left links -->
         </div>
