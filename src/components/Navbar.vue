@@ -1,63 +1,73 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <b-navbar-brand href="/accueil">
-            <img
-              src="../assets/img/myresto-logo.png"
-              class="d-inline-block align-top"
-              width="150"
-              alt="Logo My Resto"
-            />
-          </b-navbar-brand>
-          <b-nav-item
-            class="text-dark mt-3"
-            :to="{ name: 'Carte' }"
-            exact
-            exact-active-class="active"
-            >Carte</b-nav-item
-          >
-          <b-nav-item
-            class="text-dark mt-3"
-            :to="{ name: 'Commande' }"
-            exact
-            exact-active-class="active"
-            >Commande</b-nav-item
-          >
-          <b-nav-item
-            class="text-dark mt-3"
-            :to="{ name: 'Payement' }"
-            exact
-            exact-active-class="active"
-            >Paiement</b-nav-item
-          >
-          <b-nav-item
-            class="text-dark mt-3"
-            :to="{ name: 'TableauDeBord' }"
-            exact
-            v-if="role == 'Gérant'"
-            exact-active-class="active"
-            >Administration</b-nav-item
-          >
-          <b-nav-item
-            class="text-dark mt-3"
-            @click="signout()"
-            exact
-            exact-active-class="active"
-          >
-            Déconnexion</b-nav-item
-          >
-          <b-nav-item
-            class="text-dark mt-3"
-            :to="{ name: 'Auth' }"
-            exact
-            exact-active-class="active"
-            >Authentification</b-nav-item
-          >
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Navbar brand -->
+          <div class="mx-auto my-2 position-relative">
+            <a class="mx-auto" href="/accueil">
+              <img
+                src="../assets/img/myresto-logo.png"
+                width="150"
+                alt="Logo My Resto"
+                class="m-2"
+              />
+            </a>
+          </div>
+          <!-- Left links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item p-4">
+              <b-button variant="light" :to="{ name: 'Carte' }"
+                >A LA CARTE</b-button
+              > <b-icon icon="receipt" scale="2"  variant="danger"></b-icon>
+            </li>
+            <li class="nav-item p-4">
+              <b-button variant="light" :to="{ name: 'Commande' }"
+                >JE COMMANDE !</b-button
+              > <b-icon icon="cart" scale="2"  variant="danger"></b-icon>
+            </li>
+            <li class="nav-item p-4" v-if="showAuth == false">
+              <b-button variant="light" :to="{ name: 'Auth' }"
+                >AUTHENTIFICATION</b-button
+              > <b-icon icon="person-check-fill" scale="2"  variant="danger"></b-icon>
+            </li>
+            <li class="nav-item p-4" v-if="showAuth == true">
+              <b-button variant="light" @click="signout()"
+                >DECONNEXION</b-button 
+              ><b-icon icon="arrow-return-right" scale="2"  variant="danger"></b-icon>
+            </li>
+          </ul>
+          <!-- Left links -->
+        </div>
+        <!-- Collapsible wrapper -->
+
+        <!-- Right elements -->
+        <div class="d-flex align-items-center">
+          <!-- Icon -->
+          <a class="text-reset me-3" href="#">
+            
+          </a>
+        </div>
+        <!-- Right elements -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
   </div>
 </template>
 
@@ -70,12 +80,19 @@ export default {
     return {
       user: [],
       role: "",
+      showAuth: true,
     };
   },
   mounted() {
     setTimeout(() => {
       this.role = store.getters["auth/role"];
       this.user = store.getters["auth/user"];
+      console.log(this.user);
+      if (this.user) {
+        this.showAuth = false;
+      } else {
+        this.showAuth = true;
+      }
     }, 100);
   },
   methods: {
@@ -86,7 +103,7 @@ export default {
     signout() {
       if (confirm("Étes vous sur de fermer votre session ?")) {
         this.logout();
-        this.$router.push("/login");
+        this.$router.push("/auth");
       }
     },
   },

@@ -13,8 +13,10 @@
                 <b-col>
                   <h1 class="lead mt-4">
                     {{ entre.designation }}
-                    <p>{{ entre.prix }} € euros</p>
                   </h1>
+                  <p>
+                    <strong>{{ entre.prix }} € euros</strong>
+                  </p>
                 </b-col>
                 <b-col>
                   <b-img
@@ -39,8 +41,10 @@
                 <b-col>
                   <h1 class="lead mt-4">
                     {{ plat.designation }}
-                    <p>{{ plat.prix }} € euros</p>
                   </h1>
+                  <p>
+                    <strong>{{ plat.prix }} € euros</strong>
+                  </p>
                 </b-col>
                 <b-col>
                   <b-img
@@ -66,8 +70,10 @@
                 <b-col>
                   <h1 class="lead mt-4">
                     {{ dessert.designation }}
-                    <p>{{ dessert.prix }} € euros</p>
                   </h1>
+                  <p>
+                    <strong>{{ dessert.prix }} € euros</strong>
+                  </p>
                 </b-col>
                 <b-col>
                   <b-img
@@ -93,8 +99,10 @@
                 <b-col>
                   <h1 class="lead mt-4">
                     {{ boisson.designation }}
-                    <p>{{ boisson.prix }} € euros</p>
                   </h1>
+                  <p>
+                    <strong>{{ boisson.prix }} € euros</strong>
+                  </p>
                 </b-col>
                 <b-col>
                   <b-img
@@ -126,8 +134,10 @@
                 <b-col>
                   <h1 class="container lead mt-4">
                     {{ menu.nom }}
-                    <p>{{ menu.prix }} € euros</p>
                   </h1>
+                  <p>
+                    <strong>{{ menu.prix }} € euros</strong>
+                  </p>
                   <div v-for="produit in menu.produits" v-bind:key="produit.id">
                     <p class="container text-danger" style="font-size: 12px">
                       <strong>{{ produit.designation }}</strong> <br />
@@ -161,6 +171,8 @@ export default {
     return {
       produits: [],
       entres: [],
+      user: [],
+      role: [],
       plats: [],
       desserts: [],
       boissons: [],
@@ -195,7 +207,7 @@ export default {
     this.getProduits();
     this.getMenus();
     window.onresize = () => {
-       this.windowWidth = window.innerWidth
+      this.windowWidth = window.innerWidth;
       if (this.windowWidth > 1000) {
         this.colCustom = 6;
       } else {
@@ -208,7 +220,7 @@ export default {
 
 <style scoped>
 .titles {
-  margin-top:20px;
+  margin-top: 20px;
   margin-bottom: 30px;
   font-size: 50px;
   font-family: Gomarice;

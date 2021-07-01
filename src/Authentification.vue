@@ -34,7 +34,9 @@
               data-type="password"
             />
           </div>
-          <div class="group text-danger" v-if="validation">Vos identifiants ou mot de passe sont incorrect !</div>
+          <div class="group text-danger" v-if="validation">
+            Vos identifiants ou mot de passe sont incorrect !
+          </div>
           <div class="group">
             <input
               type="submit"
