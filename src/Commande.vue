@@ -6,11 +6,8 @@
         <b-col :cols="colCustom">
           <b-row>
             <b-col>
-              <select
-                v-model="filtre"
-                class="form-select"
-              >
-                <option selected value="all" >Tous</option>
+              <select v-model="filtre" class="form-select">
+                <option selected value="all">Tous</option>
                 <option value="Menu">Menu</option>
                 <option value="Entree">Entrée</option>
                 <option value="Plat">Plat</option>
@@ -248,7 +245,10 @@
             </div>
             <hr />
             <div class="d-grid gap-2 col-6 mx-auto">
-              <b-button variant="primary" @click="goToPaiement()"
+              <b-button
+                variant="primary"
+                v-if="prixTotal != 0"
+                @click="goToPaiement()"
                 >Passer au paiement</b-button
               >
             </div>
@@ -343,28 +343,36 @@ export default {
       this.commands.splice(item, 1);
     },
     getProduits() {
-      axios.get("produit/index").then((response) => {
-        this.produits = response.data;
-        this.entres = this.produits.filter(
-          (item) => item.typeProduit == "Entree"
-        );
-        this.plats = this.produits.filter((item) => item.typeProduit == "Plat");
-        this.boissons = this.produits.filter(
-          (item) => item.typeProduit == "Boisson"
-        );
-        this.desserts = this.produits.filter(
-          (item) => item.typeProduit == "Dessert"
-        );
-      }).catch((err) => {
-        console.log(err)
-      });
+      axios
+        .get("produit/index")
+        .then((response) => {
+          this.produits = response.data;
+          this.entres = this.produits.filter(
+            (item) => item.typeProduit == "Entree"
+          );
+          this.plats = this.produits.filter(
+            (item) => item.typeProduit == "Plat"
+          );
+          this.boissons = this.produits.filter(
+            (item) => item.typeProduit == "Boisson"
+          );
+          this.desserts = this.produits.filter(
+            (item) => item.typeProduit == "Dessert"
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     getMenus() {
-      axios.get("menu/index").then((response) => {
-        this.menus = response.data;
-      }).catch((err) => {
-        console.log(err)
-      });
+      axios
+        .get("menu/index")
+        .then((response) => {
+          this.menus = response.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     goToPaiement() {
       this.$router.push({
