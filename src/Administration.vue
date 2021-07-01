@@ -25,7 +25,7 @@
                 {{ command.typeLivraison }}</b-list-group-item
               >
               <b-list-group-item>
-                Produit commander :
+                Produits commandés :
                 <b-list-group
                   flush
                   v-for="menu in command.menus"
