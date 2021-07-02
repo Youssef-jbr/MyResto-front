@@ -2,7 +2,7 @@
   <div class="pb-5">
     <h1 class="titles mt-5">Paiement de votre Commande</h1>
     <div class="text-center mx-auto card-responsive bg-white p-2">
-      <h2 class="text-dark mb-5">Recapitulatif de la commande :</h2>
+      <h2 class="text-dark mb-5">Récapitulatif de la commande :</h2>
       <div class="mb-5" v-for="command in commands" v-bind:key="command.id">
         <b-card-text class="bg-dark text-white rounded mt-2 m-3 p-3">
           <b-row>
@@ -136,7 +136,7 @@
       <div class="text-center">
         <b-button
           v-show="verifForm()"
-          class="btn text-white"
+          class="btn text-white button"
           style="background-color: #972d07; border-radius: 25px"
           @click="payer()"
           >Valider</b-button
@@ -209,7 +209,7 @@ export default {
           this.$router.push("/carte")
         );
       }).catch(() => {
-        this.$swal("Erreur", "Une erreur est survenu au moment du paiement dans la base de données", "error")
+        this.$swal("Erreur", "Une erreur est survenue au moment du paiement dans la base de données", "error")
       });
     },
     verifVariable(variable) {
@@ -309,6 +309,9 @@ select {
 }
 .names {
   color: #aaa;
+}
+.button {
+  border: none;
 }
 .card-responsive {
   width: 400px;

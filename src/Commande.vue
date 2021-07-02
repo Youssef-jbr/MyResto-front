@@ -8,11 +8,11 @@
             <b-col>
               <select v-model="filtre" class="form-select">
                 <option selected value="all">Tous</option>
-                <option value="Menu">Menu</option>
-                <option value="Entree">Entrée</option>
-                <option value="Plat">Plat</option>
-                <option value="Dessert">Dessert</option>
-                <option value="Boisson">Boisson</option>
+                <option value="Menu">Menus</option>
+                <option value="Entree">Entrées</option>
+                <option value="Plat">Plats</option>
+                <option value="Dessert">Desserts</option>
+                <option value="Boisson">Boissons</option>
               </select>
             </b-col>
           </b-row>
@@ -249,7 +249,7 @@
             <hr />
             <div class="d-grid gap-2 col-6 mx-auto">
               <b-button
-                variant="primary"
+                style="background-color: #972d07; border: none"
                 v-if="prixTotal != 0"
                 @click="goToPaiement()"
                 >Passer au paiement</b-button
