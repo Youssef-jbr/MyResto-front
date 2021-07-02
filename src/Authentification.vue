@@ -23,6 +23,9 @@
               class="form-control input-colored"
             />
           </div>
+           <p class="text-danger" v-if="showErrorEmailLogin">
+            L'adresse email n'est pas valide !
+          </p>
           <div class="group">
             <label for="pass" class="label">Mot de passe</label>
             <input
@@ -75,7 +78,7 @@
               class="form-control input-colored"
             />
           </div>
-          <p class="text-danger" v-if="showErrorEmail">
+          <p class="text-danger" v-if="showErrorEmailRegister">
             L'adresse email n'est pas valide !
           </p>
           <div class="group">
@@ -137,7 +140,7 @@
               style="background-color: #972d07; border-radius: 25px"
               @click="submitRegister()"
               value="Inscription"
-              v-if="verifForm() && !showErrorPassword && !showErrorEmail"
+              v-if="verifForm() && !showErrorPassword && !showErrorEmailRegister"
             />
           </div>
         </div>
@@ -169,7 +172,8 @@ export default {
       },
       error: false,
       msgError: "",
-      showErrorEmail: false,
+      showErrorEmailLogin: false,
+      showErrorEmailRegister: false,
       showErrorPassword: false,
       validation: "",
     };
@@ -192,11 +196,18 @@ export default {
       }
     },
     emailRegister(val) {
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(val)) {
+        this.showErrorEmailRegister = false;
+      } else {
+        this.showErrorEmailRegister = true;
+      }
+    },
+    email(val) {
       console.log(val)
       if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(val)) {
-        this.showErrorEmail = false;
+        this.showErrorEmailLogin = false;
       } else {
-        this.showErrorEmail = true;
+        this.showErrorEmailLogin = true;
       }
     },
   },
