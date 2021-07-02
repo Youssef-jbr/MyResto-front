@@ -71,10 +71,13 @@
             <input
               id="email"
               v-model="formRegister.email"
-              type="text"
+              type="email"
               class="form-control input-colored"
             />
           </div>
+          <p class="text-danger" v-if="showErrorEmail">
+            L'adresse email n'est pas valide !
+          </p>
           <div class="group">
             <label for="password" class="label">Mot de passe</label>
             <input
@@ -97,6 +100,9 @@
               data-type="password"
             />
           </div>
+          <p class="text-danger" v-if="showErrorPassword">
+            Les mot de passes ne concorde pas !
+          </p>
           <div class="group">
             <label for="adresse" class="label">Adresse</label>
             <input
@@ -131,6 +137,7 @@
               style="background-color: #972d07; border-radius: 25px"
               @click="submitRegister()"
               value="Inscription"
+              v-if="verifForm() && !showErrorPassword && !showErrorEmail"
             />
           </div>
         </div>
@@ -162,6 +169,8 @@ export default {
       },
       error: false,
       msgError: "",
+      showErrorEmail: false,
+      showErrorPassword: false,
       validation: "",
     };
   },
@@ -174,13 +183,38 @@ export default {
       this.validation = "";
       this.error = false;
     },
+    confirmPassword(val) {
+      console.log(val + " " + this.formRegister.password);
+      if (val != this.formRegister.password) {
+        this.showErrorPassword = true;
+      } else {
+        this.showErrorPassword = false;
+      }
+    },
+    emailRegister(val) {
+      console.log(val)
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(val)) {
+        this.showErrorEmail = false;
+      } else {
+        this.showErrorEmail = true;
+      }
+    },
   },
   computed: {
+    emailRegister() {
+      return this.formRegister.email;
+    },
     email() {
       return this.formLogin.email;
     },
     password() {
       return this.formLogin.password;
+    },
+    passwordRegister() {
+      return this.formRegister.password;
+    },
+    confirmPassword() {
+      return this.formRegister.confirmPassword;
     },
   },
   methods: {
@@ -201,6 +235,22 @@ export default {
         }
       });
     },
+    verifForm() {
+      if (
+        this.formRegister.nom.length > 0 &&
+        this.formRegister.prenom.length > 0 &&
+        this.formRegister.email.length > 0 &&
+        this.formRegister.password.length > 0 &&
+        this.formRegister.confirmPassword.length > 0 &&
+        this.formRegister.adresse.length > 0 &&
+        this.formRegister.codePostal.length > 0 &&
+        this.formRegister.ville.length > 0
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     submitRegister() {
       this.register(this.formRegister).then((response) => {
         if (response) {
@@ -210,9 +260,10 @@ export default {
             this.validation = "is-invalid";
           }
         } else {
-          this.$swal('Vous êtes bien inscrit !').then(() => 
-          this.$router.push("/carte")
-          )} 
+          this.$swal("Vous êtes bien inscrit !").then(() =>
+            this.$router.push("/carte")
+          );
+        }
       });
     },
     validate() {
