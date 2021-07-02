@@ -211,9 +211,9 @@
                     <h1 class="lead mt-4">
                       {{ command.designation }}
                     </h1>
-                     <h1 class="lead mt-4">
-                {{ command.nom }}
-              </h1>
+                    <h1 class="lead mt-4">
+                      {{ command.nom }}
+                    </h1>
                     <p>
                       <strong>{{ command.prix }} € euros</strong>
                     </p>
@@ -364,7 +364,11 @@ export default {
           );
         })
         .catch(() => {
-          this.$swal("Erreur", "Une erreur est survenu lors de la récupération des produits", "error")
+          this.$swal(
+            "Erreur",
+            "Une erreur est survenu lors de la récupération des produits",
+            "error"
+          );
         });
     },
     getMenus() {
@@ -374,7 +378,11 @@ export default {
           this.menus = response.data;
         })
         .catch(() => {
-          this.$swal("Erreur", "Une erreur est survenu lors de la récupération des menus", "error")
+          this.$swal(
+            "Erreur",
+            "Une erreur est survenu lors de la récupération des menus",
+            "error"
+          );
         });
     },
     goToPaiement() {
