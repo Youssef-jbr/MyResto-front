@@ -44,7 +44,7 @@
     </div>
 
     <hr />
-    <h4 class="text-center mt-5 titles2">Information bancaire</h4>
+    <h4 class="text-center mt-5 titles2">Informations bancaires</h4>
     <form method="post" action="#" class="mt-4 rounded shadow p-4 forms m-5">
       <div class="container">
         <b-row>
