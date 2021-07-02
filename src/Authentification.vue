@@ -272,7 +272,11 @@ export default {
           }
         } else {
           this.$swal("Vous êtes bien inscrit !").then(() =>
-            this.$router.push("/carte")
+            this.$router.push("/carte"),
+            setTimeout(() => {
+              document.location.reload()
+            }, 2000)
+            
           );
         }
       });
