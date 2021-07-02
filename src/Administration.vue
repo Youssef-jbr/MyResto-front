@@ -11,7 +11,16 @@
         >
           <template #header>
             <h6 class="mb-0">
-              <strong>Récapitulatif de la commande n°{{ command.id }}</strong>
+              <div class="row">
+                <div class="col-12">
+                  <strong
+                    >Récapitulatif de la commande n°{{ command.id }}
+                  </strong>
+                </div>
+                <div class="col-24 mt-2">
+                  <strong>{{ formatDate(command.dateCommande) }}</strong>
+                </div>
+              </div>
             </h6>
           </template>
           <b-card-text>
@@ -42,12 +51,12 @@
                   v-for="produit in command.produits"
                   v-bind:key="produit.id"
                 >
-                  <div
-                    >Nom du produit :
-                    <strong>{{ produit.designation }}</strong> <br />
+                  <div>
+                    Nom du produit : <strong>{{ produit.designation }}</strong>
+                    <br />
                     Prix :
-                    <strong>{{ produit.prix }} € euros</strong></div
-                  >
+                    <strong>{{ produit.prix }} € euros</strong>
+                  </div>
                 </div>
               </b-list-group-item>
             </b-list-group>
@@ -59,7 +68,9 @@
 </template>
 
 <script>
+import moment from "moment";
 import axios from "axios";
+moment.locale("fr");
 export default {
   data() {
     return {
@@ -71,11 +82,21 @@ export default {
   },
   methods: {
     getCommands() {
-      axios.get("/commande/index").then((response) => {
-        this.commands = response.data;
-      }).catch(() => {
-        this.$swal("Erreur", "Une erreur est survenu lors de la récupération des commandes", "error")
-      });
+      axios
+        .get("/commande/index")
+        .then((response) => {
+          this.commands = response.data;
+        })
+        .catch(() => {
+          this.$swal(
+            "Erreur",
+            "Une erreur est survenu lors de la récupération des commandes",
+            "error"
+          );
+        });
+    },
+    formatDate(date) {
+      return moment(date).format("LLL");
     },
   },
 };
