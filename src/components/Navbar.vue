@@ -113,7 +113,6 @@ export default {
     ...mapActions({
       logout: "auth/logout",
     }),
-
     signout() {
       if (confirm("Étes vous sur de fermer votre session ?")) {
         this.logout();
