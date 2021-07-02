@@ -211,6 +211,9 @@
                     <h1 class="lead mt-4">
                       {{ command.designation }}
                     </h1>
+                     <h1 class="lead mt-4">
+                {{ command.nom }}
+              </h1>
                     <p>
                       <strong>{{ command.prix }} € euros</strong>
                     </p>
