@@ -360,8 +360,8 @@ export default {
             (item) => item.typeProduit == "Dessert"
           );
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          this.$swal("Erreur", "Une erreur est survenu lors de la récupération des produits", "error")
         });
     },
     getMenus() {
@@ -370,8 +370,8 @@ export default {
         .then((response) => {
           this.menus = response.data;
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          this.$swal("Erreur", "Une erreur est survenu lors de la récupération des menus", "error")
         });
     },
     goToPaiement() {

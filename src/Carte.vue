@@ -195,11 +195,15 @@ export default {
         this.desserts = this.produits.filter(
           (item) => item.typeProduit == "Dessert"
         );
+      }).catch(() => {
+        this.$swal("Erreur", "Une erreur est survenu lors de la récupération des produits", "error")
       });
     },
     getMenus() {
       axios.get("menu/index").then((response) => {
         this.menus = response.data;
+      }).catch(() => {
+        this.$swal("Erreur", "Une erreur est survenu lors de la récupération des menus", "error")
       });
     },
   },

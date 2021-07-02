@@ -208,8 +208,8 @@ export default {
         this.$swal(response.data.message).then(() =>
           this.$router.push("/carte")
         );
-      }).catch((err) => {
-        console.log(err)
+      }).catch(() => {
+        this.$swal("Erreur", "Une erreur est survenu au moment du paiement dans la base de données", "error")
       });
     },
     verifVariable(variable) {
