@@ -10,7 +10,7 @@
     img-height="300"
   >
     <b-card-text class='display-4 text-center' style="font-family:gomarice">
-      <span class="text-danger">MyResto</span> <br> vous accueillent du lundi au vendredi <br> entre 11h30 et 14h et 18h30 jusqu'a 23h
+      <span class="text-danger">MyResto</span> <br> vous accueillent du lundi au samedi <br> entre 11h30 et 14h et 18h30 jusqu'a 23h
     </b-card-text>
   </b-card>
 </div>
